@@ -26,9 +26,12 @@ __DATA__
 <html>
 <head>
   <title><?= $_[0] ?></title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<div id="content">
 
 @@ foot.html
+</div>
 </body>
 </html>

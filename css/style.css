@@ -1,0 +1,30 @@
+#content {
+  width:70%;
+  margin:100px auto;
+  font-size:x-large;
+  font-weight:bold;
+}
+h1, h2, h3, h4{
+  text-align:center;
+  margin-bottom:4em;
+}
+h2 {
+  padding:2em;
+  border: 1px solid #ccc;
+}
+h3 {
+  font-size:200%;
+  padding-bottom:0.5em;
+  border-bottom:1px solid #ccc;
+  margin:1.2em 0 0.5em 0;
+}
+img {
+  width:70%;
+  margin-left:15%;
+  padding:2px;
+  border:1px solid #999;
+}
+ul, p {
+  color:#333;
+  font-size:xx-large;
+}
