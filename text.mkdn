@@ -99,6 +99,43 @@
 
 > Shut the fuck up and write some code.
 
+### 例えば…
+
+- Twitter上から「おはよう」が含まれるツイートを解析
+- アイデアの元
+- 簡単なプログラムを動かすことで検証が出来る
+
+### twitter_search.pl
+
+    use Net::Twitter::Lite::WithAPIv1_1;
+    use Config::Pit;
+    use Encode;
+    use utf8;
+
+    binmode STDOUT, ':utf8';
+
+    my $config = pit_get('twitter-api');
+    my $nt     = Net::Twitter::Lite::WithAPIv1_1->new(
+        consumer_key        => $config->{consumer_key},
+        consumer_secret     => $config->{consumer_secret},
+        access_token        => $config->{token},
+        access_token_secret => $config->{token_secret}
+    );
+    my $result = $nt->search(
+        {
+            q                => 'おはよう',
+            include_entities => 1,
+            result_type      => 'recent',
+            count            => 100
+        }
+    );
+
+    for my $tweet ( @{ $result->{statuses} } ) {
+        print "$tweet->{text}\n";
+        print "----------------------------------------\n";
+    }
+
+
 ### とにかく手を動かすことが大事
 
 > そこに1,000人いたとして、アイデアを思いつくのが100人、アイデアを実現するのが10人、アイデアで成功する人は1人

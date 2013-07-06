@@ -26,6 +26,7 @@ __DATA__
 <html>
 <head>
   <title><?= $_[0] ?></title>
+  <link href="js/pretty/prettify.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -33,5 +34,8 @@ __DATA__
 
 @@ foot.html
 </div>
+<script type="text/javascript" src="js/pretty/prettify.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
