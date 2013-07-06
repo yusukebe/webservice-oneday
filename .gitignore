@@ -5,4 +5,10 @@ Icon
 ._*
 .Spotlight-V100
 .Trashes
-index.html
+README.mkdn
+cpanfile
+convert.pl
+examples/
+lib/
+realtime.psgi
+text.mkdn
