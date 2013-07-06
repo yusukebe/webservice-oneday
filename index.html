@@ -1,8 +1,11 @@
 <html>
 <head>
   <title>1日でわかるWebサービス制作の全て ～企画から実装まで～</title>
+  <link href="js/pretty/prettify.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<div id="content">
 
 <h1>1日でわかるWebサービス制作の全て ～企画から実装まで～</h1>
 
@@ -22,5 +25,156 @@
 <h3>ワディット</h3>
 
 <p><img src="images/wadit.jpg" alt="ワディット" /></p>
+
+<h3>オモロキ</h3>
+
+<p><img src="images/omoroki.jpg" alt="オモロキ" /></p>
+
+<h3>メインワークその1</h3>
+
+<p><img src="images/bokete.png" alt="ボケて" /></p>
+
+<h3>メインワークその2</h3>
+
+<p><img src="images/book.jpg" alt="Webサービスのつくり方" /></p>
+
+<h3>その他つくったモノ</h3>
+
+<ul>
+<li><a href="http://kimi.la/">君のラジオ</a></li>
+<li>anpiレポート</li>
+<li>CDTube</li>
+<li>某アダルトサイト達</li>
+</ul>
+
+<h3>ボケての現状</h3>
+
+<ul>
+<li>全デバイス合計 月間「1億PV以上」</li>
+<li>スマホアプリ合計 170万ダウンロード</li>
+<li>hao123、 Yahoo! JAPANと連携</li>
+<li>コンテンツ書籍化 x 2回</li>
+<li>各種企業様とコラボ</li>
+</ul>
+
+<h3>ボケての歩み</h3>
+
+<p><img src="images/bokete_history.png" alt="ボケての歩み" /></p>
+
+<h2>本題「Webサービスをつくるに当たって」</h2>
+
+<h3>Webサービスの定義</h3>
+
+<p>訪問者に対して何かしらの <em>サービス</em> を提供するWeb</p>
+
+<ul>
+<li>HTTPを応用してSOAP/XMLなどを使ったメッセージ送受信することもWebサービスと呼ばれる</li>
+<li>動的なWebサイト</li>
+<li>アクセスされた状況に応じてページが変化する</li>
+<li>連動するスマホアプリもその一環</li>
+</ul>
+
+<h3>事例紹介「クックパッド」</h3>
+
+<p><img src="images/cookpad.png" alt="クックパッド" /></p>
+
+<h3>事例紹介「nanapi」</h3>
+
+<p><img src="images/nanapi.png" alt="クックパッド" /></p>
+
+<h3>サービスを提供する＝ユーザーがいる</h3>
+
+<ul>
+<li>いわゆる「B to C」の「C」</li>
+<li>より多くのユーザーに使ってもらうこと</li>
+<li>ユーザーの体験を充実させること</li>
+<li>この2つが指標になる</li>
+</ul>
+
+<h3>個人や小さな規模からも始められる</h3>
+
+<ul>
+<li>オモロキの社員は4人</li>
+<li>その他パートナーと組んで開発・運用</li>
+<li>イニシャルコストが低い</li>
+<li>個人でもWebサービスをつくって認知させることは可能</li>
+<li>興味が多様化しているのでニッチなモノでも成り立つ</li>
+</ul>
+
+<h3>得られること</h3>
+
+<ol>
+<li>勉強になる</li>
+<li>2枚目の名刺として</li>
+<li>ユーザーの反応が楽しい</li>
+<li>もしかしてお金になるかも…</li>
+</ol>
+
+<h3>嬉しい瞬間</h3>
+
+<blockquote>
+  <p>「あのサービスをつくったゆーすけべーさんですよね？」</p>
+</blockquote>
+
+<h3>6畳一間から世界を変える</h3>
+
+<p><img src="images/desk.jpg" alt="デスク" /></p>
+
+<h3>肝に銘じたい言葉</h3>
+
+<blockquote>
+  <p>Shut the fuck up and write some code.</p>
+</blockquote>
+
+<h3>例えば…</h3>
+
+<ul>
+<li>Twitter上から「おはよう」が含まれるツイートを解析</li>
+<li>アイデアの元</li>
+<li>簡単なプログラムを動かすことで検証が出来る</li>
+</ul>
+
+<h3>twitter_search.pl</h3>
+
+<pre><code>use Net::Twitter::Lite::WithAPIv1_1;
+use Config::Pit;
+use Encode;
+use utf8;
+
+binmode STDOUT, ':utf8';
+
+my $config = pit_get('twitter-api');
+my $nt     = Net::Twitter::Lite::WithAPIv1_1-&gt;new(
+    consumer_key        =&gt; $config-&gt;{consumer_key},
+    consumer_secret     =&gt; $config-&gt;{consumer_secret},
+    access_token        =&gt; $config-&gt;{token},
+    access_token_secret =&gt; $config-&gt;{token_secret}
+);
+my $result = $nt-&gt;search(
+    {
+        q                =&gt; 'おはよう',
+        include_entities =&gt; 1,
+        result_type      =&gt; 'recent',
+        count            =&gt; 100
+    }
+);
+
+for my $tweet ( @{ $result-&gt;{statuses} } ) {
+    print "$tweet-&gt;{text}\n";
+    print "----------------------------------------\n";
+}
+</code></pre>
+
+<h3>とにかく手を動かすことが大事</h3>
+
+<blockquote>
+  <p>そこに1,000人いたとして、アイデアを思いつくのが100人、アイデアを実現するのが10人、アイデアで成功する人は1人</p>
+</blockquote>
+
+<h2>企画と開発準備</h2>
+</div>
+<script type="text/javascript" src="js/pretty/prettify.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
