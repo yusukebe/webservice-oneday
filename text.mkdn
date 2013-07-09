@@ -255,18 +255,127 @@ CPANライブラリのエコシステム
 
 ## Webテクノロジー・オーバービュー
 
+### Webの基礎技術を学びながらつくる
 
+オススメ本
 
+![Webを支える技術](images/http_and_rest_hon.jpg)
 
+### ホームページをブラウザで閲覧する際の裏側
 
+![サーバ・クライアント](images/client_server.png)
 
+このやり取り自体が取り決め＝ *プロトコル* として定められている
 
+### HTTP、URI、HTML
 
+![HTTP、URI、HTML](images/web_diagram.png)
 
+> あくまで取り決めなので「そういうモノ」として捉える
 
+### URI / URL
 
+>  http://example.com/about.html
 
+- プロトコルに「HTTP」を使用する
+- ホスト名は example.com
+- パスが /about.html
+- 拡張子が.htmlなので大抵HTMLである
 
+### HTTPのメソッド
 
+クライアントからサーバへのリクエスト。リソースを扱うため、主に4つが使われている
 
+- GET
+- POST
+- PUT
+- DELETE
+
+### telnetでGET
+
+    $ telnet yusukebe.com 80
+
+    GET / HTTP/1.1
+    Host: yusukebe.com
+    
+### Webページを構成する要素
+
+- HTML
+- CSS
+- JavaScript
+- 画像、Flashなどのバイナリファイル
+
+### HTML - HyperText Markup Language
+
+ある程度構造化したテキストをマークアップで書ける
+
+    <h2 class="title">タイトル</h2>
+
+### CSS - Cascading Style Sheets
+
+CSSセレクタを利用しHTMLを装飾する
+
+    h2.title { color:#333; }
+
+### JavaScript
+
+ページ自体をブラウザ側で操作し動きを与える
+
+    $('h2.title').fadeOut();
+
+### 動的サイトと静的サイト
+
+![静的サイトと動的サイト](images/static_or_dynamic.png)
+
+### Webプログラミング言語
+
+- PHP
+- Perl
+- Ruby
+- Python
+- Java
+
+などが主流であるが C言語 でも不可能ではない
+
+### Web Application Framework
+
+> 例えば、Ruby on Rails
+
+### それ以前
+
+![CGI](images/kent.png)
+
+### MVCモデル
+
+- Model
+- View
+- Controller
+
+> 役割を分離して考えておくとよいよねぇ〜
+
+### Webサーバ、ミドルウェア色々
+
+- Apache
+- nginx
+- MySQL
+- memcached
+- Redis
+- MongoDB
+
+### クラウドとしてのAWS
+
+- Amazon Web Services
+- ボケてでは現在30台弱のサーバを利用
+- 10分でスケールアウトすることが可能
+- マネージドされたミドルウェアを使える
+  - S3 / CloudFront
+  - RDS
+  - ElastiCache
+  - SES
+
+## ライブコーディングその1
+
+## ライブコーディングその2
+
+## まとめ
 

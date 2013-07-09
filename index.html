@@ -328,6 +328,158 @@ for my $tweet ( @{ $result-&gt;{statuses} } ) {
 </ul>
 
 <h2>Webテクノロジー・オーバービュー</h2>
+
+<h3>Webの基礎技術を学びながらつくる</h3>
+
+<p>オススメ本</p>
+
+<p><img src="images/http_and_rest_hon.jpg" alt="Webを支える技術" /></p>
+
+<h3>ホームページをブラウザで閲覧する際の裏側</h3>
+
+<p><img src="images/client_server.png" alt="サーバ・クライアント" /></p>
+
+<p>このやり取り自体が取り決め＝ <em>プロトコル</em> として定められている</p>
+
+<h3>HTTP、URI、HTML</h3>
+
+<p><img src="images/web_diagram.png" alt="HTTP、URI、HTML" /></p>
+
+<blockquote>
+  <p>あくまで取り決めなので「そういうモノ」として捉える</p>
+</blockquote>
+
+<h3>URI / URL</h3>
+
+<blockquote>
+  <p>http://example.com/about.html</p>
+</blockquote>
+
+<ul>
+<li>プロトコルに「HTTP」を使用する</li>
+<li>ホスト名は example.com</li>
+<li>パスが /about.html</li>
+<li>拡張子が.htmlなので大抵HTMLである</li>
+</ul>
+
+<h3>HTTPのメソッド</h3>
+
+<p>クライアントからサーバへのリクエスト。リソースを扱うため、主に4つが使われている</p>
+
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+
+<h3>telnetでGET</h3>
+
+<pre><code>$ telnet yusukebe.com 80
+
+GET / HTTP/1.1
+Host: yusukebe.com
+</code></pre>
+
+<h3>Webページを構成する要素</h3>
+
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>画像、Flashなどのバイナリファイル</li>
+</ul>
+
+<h3>HTML - HyperText Markup Language</h3>
+
+<p>ある程度構造化したテキストをマークアップで書ける</p>
+
+<pre><code>&lt;h2 class="title"&gt;タイトル&lt;/h2&gt;
+</code></pre>
+
+<h3>CSS - Cascading Style Sheets</h3>
+
+<p>CSSセレクタを利用しHTMLを装飾する</p>
+
+<pre><code>h2.title { color:#333; }
+</code></pre>
+
+<h3>JavaScript</h3>
+
+<p>ページ自体をブラウザ側で操作し動きを与える</p>
+
+<pre><code>$('h2.title').fadeOut();
+</code></pre>
+
+<h3>動的サイトと静的サイト</h3>
+
+<p><img src="images/static_or_dynamic.png" alt="静的サイトと動的サイト" /></p>
+
+<h3>Webプログラミング言語</h3>
+
+<ul>
+<li>PHP</li>
+<li>Perl</li>
+<li>Ruby</li>
+<li>Python</li>
+<li>Java</li>
+</ul>
+
+<p>などが主流であるが C言語 でも不可能ではない</p>
+
+<h3>Web Application Framework</h3>
+
+<blockquote>
+  <p>例えば、Ruby on Rails</p>
+</blockquote>
+
+<h3>それ以前</h3>
+
+<p><img src="images/kent.png" alt="CGI" /></p>
+
+<h3>MVCモデル</h3>
+
+<ul>
+<li>Model</li>
+<li>View</li>
+<li>Controller</li>
+</ul>
+
+<blockquote>
+  <p>役割を分離して考えておくとよいよねぇ〜</p>
+</blockquote>
+
+<h3>Webサーバ、ミドルウェア色々</h3>
+
+<ul>
+<li>Apache</li>
+<li>nginx</li>
+<li>MySQL</li>
+<li>memcached</li>
+<li>Redis</li>
+<li>MongoDB</li>
+</ul>
+
+<h3>クラウドとしてのAWS</h3>
+
+<ul>
+<li>Amazon Web Services</li>
+<li>ボケてでは現在30台弱のサーバを利用</li>
+<li>10分でスケールアウトすることが可能</li>
+<li>マネージドされたミドルウェアを使える
+<ul>
+<li>S3 / CloudFront</li>
+<li>RDS</li>
+<li>ElastiCache</li>
+<li>SES</li>
+</ul></li>
+</ul>
+
+<h2>ライブコーディングその1</h2>
+
+<h2>ライブコーディングその2</h2>
+
+<h2>まとめ</h2>
 </div>
 <script type="text/javascript" src="js/pretty/prettify.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
