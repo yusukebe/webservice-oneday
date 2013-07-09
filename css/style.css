@@ -12,6 +12,8 @@ h2 {
   margin:2em 0;
   padding:2em;
   border: 1px solid #ccc;
+  background-color:#222;
+  color:#fff;
 }
 h3 {
   font-size:200%;
@@ -32,6 +34,13 @@ ul, ol, p {
   color:#333;
   font-size:xx-large;
 }
+
+ul ul li, ol ul li {
+  font-size:xx-large;
+  font-size:90%;
+  color:#666;
+}
+
 blockquote {
   margin:100px 0;
   font-style:italic;
