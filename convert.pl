@@ -7,8 +7,8 @@ use WebServiceOneDay;
 use File::Spec;
 use Path::Class qw/file/;
 
-my $path = $ARGV[0] or die "File path is required!";
-my $html = WebServiceOneDay::markdown2html(File::Spec->catfile($path));
+my $path = File::Spec->catfile("$FindBin::Bin/text.mkdn");
+my $html = WebServiceOneDay::markdown2html($path);
 my $output = file('index.html');
 my $fh = $output->open('w');
 print $fh $html;
