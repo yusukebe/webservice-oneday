@@ -6,9 +6,3 @@ Icon
 .Spotlight-V100
 .Trashes
 README.mkdn
-cpanfile
-convert.pl
-examples/
-lib/
-realtime.psgi
-text.mkdn
