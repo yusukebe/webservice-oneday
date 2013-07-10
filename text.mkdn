@@ -430,10 +430,108 @@ CSSセレクタを利用しHTMLを装飾する
 - [WebServiceOneDay.pm](lib/WebServiceOneDay.pm)
 - [convert.pl](examples/convert.pl)
 
+### CPANライブラリ
+
+![search.cpan.org](images/cpan.png)
+
+### WebServiceOneDay.pm
+
+    package WebServiceOneDay;
+    use strict;
+    use warnings;
+    use Text::Markdown qw/markdown/;
+    use Path::Class qw/file/;
+    use Encode qw/decode_utf8/;
+    use Data::Section::Simple qw/get_data_section/;
+    use Text::MicroTemplate qw/render_mt/;
+
+    …;
+
+### Perl Mongers !!
+
+![YAPC::Asia 2011](images/yapcasia.jpg)
+
+## Web Application Framework
+
+### Mojolicious
+
+- MVCのうちVCをサポート
+- Perlコアモジュールのみに依存  = ポータブル
+- いわゆるフルスタックではない
+- 自前で最小限全てを実装している意味ではフルスタック
+- その他CPANモジュールを組み合わせる
+- 最新バージョンは 4.18
+
+### スケルトン
+
+    $ mojo generate app MyApp::Web
+    
+すると… 
+    
+    tree ./
+    ./
+    ├── lib
+    │   └── MyApp
+    │       ├── Web
+    │       │   └── Example.pm
+    │       └── Web.pm
+    ├── log
+    ├── public
+    │   └── index.html
+    ├── script
+    │   └── my_app_web
+    ├── t
+    │   └── basic.t
+    └── templates
+        ├── example
+        │   └── welcome.html.ep
+        └── layouts
+            └── default.html.ep
+
+### ルーティング
+
+    package MyApp::Web;
+    use Mojo::Base 'Mojolicious';
+
+    sub startup {
+        my $self = shift;
+        my $r = $self->routes;
+        $r->namespaces(['MyApp::Web::Controller']);
+        $r->get('/')->to('root#index');
+    }
+
+    1;
+    
+### コントローラ
+
+    package MyApp::Web::Controller::Root;
+    use Mojo::Base 'Mojolicious::Controller';
+
+    sub index {
+        my $self = shift;
+        my $message = "Hello, I'm from Yokohama!";
+        $self->stash->{message} = $message;
+        $self->render();
+    }
+
+    1;
+    
+### テンプレート
+
+    % layout 'default';
+    % title 'Welcome';
+
+    <h2><%= $message %></h2>
+
+### さて
+
+> なにをつくりましょうか！
 
 ---
 
 ## ライブコーディングその2
+
+---
 
 ## まとめ
 
