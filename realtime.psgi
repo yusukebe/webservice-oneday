@@ -14,6 +14,6 @@ my $app = sub {
 
 builder {
     enable "Plack::Middleware::Static",
-        path => qr{^/(images|js|css)/}, root => './';
+        path => qr{^/(images|js|css|examples|lib)/}, root => './';
     $app;
 };

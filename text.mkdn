@@ -34,7 +34,21 @@
 - CDTube
 - 某アダルトサイト達
 
-### ボケての現状
+### [君のラジオ](http://kimi.la/)
+
+![君のラジオ](images/kimi.png)
+
+### anpiレポート
+
+![anpiレポート](images/anpi.png)
+
+### CDTube
+
+![CDTube](images/cdtube.jpg)
+
+## ボケて（bokete）
+
+### 現状
 
 - 全デバイス合計 月間「1億PV以上」
 - スマホアプリ合計 170万ダウンロード
@@ -42,9 +56,11 @@
 - コンテンツ書籍化 x 2回
 - 各種企業様とコラボ
 
-### ボケての歩み
+### 歩み
 
 ![ボケての歩み](images/bokete_history.png)
+
+---
 
 ## 本題「Webサービスをつくるに当たって」
 
@@ -139,6 +155,8 @@
 ### とにかく手を動かすことが大事
 
 > そこに1,000人いたとして、アイデアを思いつくのが100人、アイデアを実現するのが10人、アイデアで成功する人は1人
+
+---
 
 ## 企画と開発準備
 
@@ -253,6 +271,8 @@ CPANライブラリのエコシステム
 - [Where are Casual Perlers ?](http://yusukebe.com/archives/20090912/120113.html)
 - [On module writers and users](http://bulknews.typepad.com/blog/2009/09/on-module-writers-and-users.html)
 
+---
+
 ## Webテクノロジー・オーバービュー
 
 ### Webの基礎技術を学びながらつくる
@@ -365,7 +385,7 @@ CSSセレクタを利用しHTMLを装飾する
 ### クラウドとしてのAWS
 
 - Amazon Web Services
-- ボケてでは現在30台弱のサーバを利用
+- ボケてでは現在30台ほどのサーバを利用
 - 10分でスケールアウトすることが可能
 - マネージドされたミドルウェアを使える
   - S3 / CloudFront
@@ -373,7 +393,45 @@ CSSセレクタを利用しHTMLを装飾する
   - ElastiCache
   - SES
 
+---
+
 ## ライブコーディングその1
+
+### なんかつくります！
+
+> 例: Twitterログイン掲示板
+
+### いつつくるの？
+
+> 今でしょ！
+
+## 開発環境の紹介  
+
+### use Perl
+
+- 25歳/ラリー・ウォールさんによる
+- テキスト処理に強い言語
+- Ruby/Python/PHPに押されがちだけど…
+- Webもテキストみたい ＝ Webにも強い
+- Perl5の最新安定バージョンは 5.18.0
+
+### TMTOWTDI
+
+![ラリー・ウォール](images/larry.jpg)
+
+> やり方はひとつじゃない
+
+### 実はこの資料もPerlでHTML化
+
+- Markdown でテキストを編集
+- 手元にてリアルタイムでプレビューするWebアプリ
+- 変換スクリプトでHTML化
+- GitHub Pagesで公開
+- [WebServiceOneDay.pm](lib/WebServiceOneDay.pm)
+- [convert.pl](examples/convert.pl)
+
+
+---
 
 ## ライブコーディングその2
 
