@@ -123,33 +123,33 @@
 
 ### twitter_search.pl
 
-    use Net::Twitter::Lite::WithAPIv1_1;
-    use Config::Pit;
-    use Encode;
-    use utf8;
+	use Net::Twitter::Lite::WithAPIv1_1;
+	use Config::Pit;
+	use Encode;
+	use utf8;
 
-    binmode STDOUT, ':utf8';
+	binmode STDOUT, ':utf8';
 
-    my $config = pit_get('twitter-api');
-    my $nt     = Net::Twitter::Lite::WithAPIv1_1->new(
-        consumer_key        => $config->{consumer_key},
-        consumer_secret     => $config->{consumer_secret},
-        access_token        => $config->{token},
-        access_token_secret => $config->{token_secret}
-    );
-    my $result = $nt->search(
-        {
-            q                => 'おはよう',
-            include_entities => 1,
-            result_type      => 'recent',
-            count            => 100
-        }
-    );
+	my $config = pit_get('twitter-api');
+	my $nt	 = Net::Twitter::Lite::WithAPIv1_1->new(
+		consumer_key		=> $config->{consumer_key},
+		consumer_secret	 => $config->{consumer_secret},
+		access_token		=> $config->{token},
+		access_token_secret => $config->{token_secret}
+	);
+	my $result = $nt->search(
+		{
+			q				=> 'おはよう',
+			include_entities => 1,
+			result_type	  => 'recent',
+			count			=> 100
+		}
+	);
 
-    for my $tweet ( @{ $result->{statuses} } ) {
-        print "$tweet->{text}\n";
-        print "----------------------------------------\n";
-    }
+	for my $tweet ( @{ $result->{statuses} } ) {
+		print "$tweet->{text}\n";
+		print "----------------------------------------\n";
+	}
 
 
 ### とにかく手を動かすことが大事
@@ -313,11 +313,11 @@ CPANライブラリのエコシステム
 
 ### telnetでGET
 
-    $ telnet yusukebe.com 80
+	$ telnet yusukebe.com 80
 
-    GET / HTTP/1.1
-    Host: yusukebe.com
-    
+	GET / HTTP/1.1
+	Host: yusukebe.com
+	
 ### Webページを構成する要素
 
 - HTML
@@ -329,19 +329,19 @@ CPANライブラリのエコシステム
 
 ある程度構造化したテキストをマークアップで書ける
 
-    <h2 class="title">タイトル</h2>
+	<h2 class="title">タイトル</h2>
 
 ### CSS - Cascading Style Sheets
 
 CSSセレクタを利用しHTMLを装飾する
 
-    h2.title { color:#333; }
+	h2.title { color:#333; }
 
 ### JavaScript
 
 ページ自体をブラウザ側で操作し動きを与える
 
-    $('h2.title').fadeOut();
+	$('h2.title').fadeOut();
 
 ### 動的サイトと静的サイト
 
@@ -436,16 +436,16 @@ CSSセレクタを利用しHTMLを装飾する
 
 ### WebServiceOneDay.pm
 
-    package WebServiceOneDay;
-    use strict;
-    use warnings;
-    use Text::Markdown qw/markdown/;
-    use Path::Class qw/file/;
-    use Encode qw/decode_utf8/;
-    use Data::Section::Simple qw/get_data_section/;
-    use Text::MicroTemplate qw/render_mt/;
+	package WebServiceOneDay;
+	use strict;
+	use warnings;
+	use Text::Markdown qw/markdown/;
+	use Path::Class qw/file/;
+	use Encode qw/decode_utf8/;
+	use Data::Section::Simple qw/get_data_section/;
+	use Text::MicroTemplate qw/render_mt/;
 
-    …;
+	…;
 
 ### Perl Mongers !!
 
@@ -464,65 +464,65 @@ CSSセレクタを利用しHTMLを装飾する
 
 ### スケルトン
 
-    $ mojo generate app MyApp::Web
-    
+	$ mojo generate app MyApp::Web
+	
 すると… 
-    
-    $ tree ./
-    
-    ./
-    ├── lib
-    │   └── MyApp
-    │       ├── Web
-    │       │   └── Example.pm
-    │       └── Web.pm
-    ├── log
-    ├── public
-    │   └── index.html
-    ├── script
-    │   └── my_app_web
-    ├── t
-    │   └── basic.t
-    └── templates
-        ├── example
-        │   └── welcome.html.ep
-        └── layouts
-            └── default.html.ep
+	
+	$ tree ./
+	
+	./
+	├── lib
+	│   └── MyApp
+	│  	 ├── Web
+	│  	 │   └── Example.pm
+	│  	 └── Web.pm
+	├── log
+	├── public
+	│   └── index.html
+	├── script
+	│   └── my_app_web
+	├── t
+	│   └── basic.t
+	└── templates
+		├── example
+		│   └── welcome.html.ep
+		└── layouts
+			└── default.html.ep
 
 ### ルーティング
 
-    package MyApp::Web;
-    use Mojo::Base 'Mojolicious';
+	package MyApp::Web;
+	use Mojo::Base 'Mojolicious';
 
-    sub startup {
-        my $self = shift;
-        my $r = $self->routes;
-        $r->namespaces(['MyApp::Web::Controller']);
-        $r->get('/')->to('root#index');
-    }
+	sub startup {
+		my $self = shift;
+		my $r = $self->routes;
+		$r->namespaces(['MyApp::Web::Controller']);
+		$r->get('/')->to('root#index');
+	}
 
-    1;
-    
+	1;
+	
 ### コントローラ
 
-    package MyApp::Web::Controller::Root;
-    use Mojo::Base 'Mojolicious::Controller';
+	package MyApp::Web::Controller::Root;
+	use Mojo::Base 'Mojolicious::Controller';
 
-    sub index {
-        my $self = shift;
-        my $message = "Hello, I'm from Yokohama!";
-        $self->stash->{message} = $message;
-        $self->render();
-    }
+	sub index {
+		my $self = shift;
+		my $message = "Hello, I'm from Yokohama!";
+		$self->stash->{message} = $message;
+		$self->render();
+	}
 
-    1;
-    
+	1;
+	
 ### テンプレート
 
-    % layout 'default';
-    % title 'Welcome';
+	% layout 'default';
+	% title 'Welcome';
 
-    <h2><%= $message %></h2>
+	<h2><%= $message %></h2>
 
 ### さて
 
@@ -531,6 +531,115 @@ CSSセレクタを利用しHTMLを装飾する
 ---
 
 ## ライブコーディングその2
+
+### データベースを扱う
+
+- MySQLを使用
+- リレーショナルデータベースの一種
+- いわゆる「表」
+- SQLによる問い合わせ
+- データの抽出、結合
+
+### テーブル構造
+
+	mysql> select * from entry;
+	+----+---------------+-----------+---------+---------------------+
+	| id | title		 | body	  | user_id | created_on		  |
+	+----+---------------+-----------+---------+---------------------+
+	|  1 | This is title | Body Text |	   1 | 2013-07-23 14:00:00 |
+	+----+---------------+-----------+---------+---------------------+
+	1 row in set (0.00 sec)
+
+### SQL文
+
+	CREATE TABLE entry (
+		id INT UNSIGNED AUTO_INCREMENT,
+		title VARCHAR(255),
+		body TEXT NOT NULL,
+		user_id BIGINT UNSIGNED NOT NULL,
+		created_on DATETIME NOT NULL,
+		PRIMARY KEY (`id`)
+	) DEFAULT CHARACTER SET 'utf8' engine=InnoDB;
+
+	INSERT INTO entry
+	(title, body, user_id, created_on)
+	VALUES
+	('This is title', 'Body Text', 1, '2013-07-23 14:00:00');
+
+### O/R Mapper
+
+- Object-relational mapping
+- Rowオブジェクトとして扱う
+- リレーションも面倒を見る？
+- よりプログラムっぽくSQL発行
+
+### 疑似コード
+
+	$db->insert( 'entry',
+		{ title => 'This is title', body => 'Body text' } );
+	my $entry = $db->single( 'entry', { id => 1 } );
+	say $entry->title; # This is title
+	$entry->update({ title => 'Another title' });
+	say $entry->title; # Another title
+	$entry->delete();
+
+### モデルをつくってコントローラから呼び出す
+
+- 極力コントローラは薄く
+- モデル単体で動作、テスト可能なように
+- モデル内でO/R Mapperを扱うことを推奨
+
+### コントローラにて
+
+	sub index {
+		my $self = shift;
+		my $entries = $self->model('Entry')->get_recent_entries({}, {
+			order_by => 'id DESC', page => 1
+		});
+		$self->stash->{entries} = $entries;
+		$self->render('index');
+	}
+	
+### CLI
+
+- コマンドラインインターフェース
+- cron や デーモンとして実行する
+- いわゆるバッチ処理
+- ジョブキュー
+- vs Webアプリ
+
+### バリデーション
+
+- フォームの入力値の検証
+- 例えば、それが郵便番号っぽいか？
+- 適切なエラーメッセージを表示してあげる
+
+### フロントエンドを実装する
+
+- 最小限のライブラリで楽をする
+- jQuery
+- CSS Framework
+
+### テスト
+
+- プログラムが望む挙動をしているか？を担保する
+- テストコードが自動で「緑」か「赤」かを判断
+
+TAP
+
+	ok $model->get_entry({ id => 1 });
+	
+### プロビジョニング例
+
+- VPS もしくは AWS という選択肢
+- フロントエンド - nginx
+- アプリケーションサーバ - Starman / Starlet
+- DBサーバ - MySQL
+- キャッシュサーバ - memcached
+
+---
+
+## 今回紹介しなかったこと
 
 ---
 
