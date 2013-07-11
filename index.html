@@ -542,14 +542,124 @@ Host: yusukebe.com
 <li><a href="examples/convert.pl">convert.pl</a></li>
 </ul>
 
+<h3>CPANライブラリ</h3>
+
+<p><img src="images/cpan.png" alt="search.cpan.org" /></p>
+
+<h3>WebServiceOneDay.pm</h3>
+
+<pre><code>package WebServiceOneDay;
+use strict;
+use warnings;
+use Text::Markdown qw/markdown/;
+use Path::Class qw/file/;
+use Encode qw/decode_utf8/;
+use Data::Section::Simple qw/get_data_section/;
+use Text::MicroTemplate qw/render_mt/;
+
+…;
+</code></pre>
+
+<h3>Perl Mongers !!</h3>
+
+<p><img src="images/yapcasia.jpg" alt="YAPC::Asia 2011" /></p>
+
+<h2>Web Application Framework</h2>
+
+<h3>Mojolicious</h3>
+
+<ul>
+<li>MVCのうちVCをサポート</li>
+<li>Perlコアモジュールのみに依存  = ポータブル</li>
+<li>いわゆるフルスタックではない</li>
+<li>自前で最小限全てを実装している意味ではフルスタック</li>
+<li>その他CPANモジュールを組み合わせる</li>
+<li>最新バージョンは 4.18</li>
+</ul>
+
+<h3>スケルトン</h3>
+
+<pre><code>$ mojo generate app MyApp::Web
+</code></pre>
+
+<p>すると… </p>
+
+<pre><code>tree ./
+./
+├── lib
+│   └── MyApp
+│       ├── Web
+│       │   └── Example.pm
+│       └── Web.pm
+├── log
+├── public
+│   └── index.html
+├── script
+│   └── my_app_web
+├── t
+│   └── basic.t
+└── templates
+    ├── example
+    │   └── welcome.html.ep
+    └── layouts
+        └── default.html.ep
+</code></pre>
+
+<h3>ルーティング</h3>
+
+<pre><code>package MyApp::Web;
+use Mojo::Base 'Mojolicious';
+
+sub startup {
+    my $self = shift;
+    my $r = $self-&gt;routes;
+    $r-&gt;namespaces(['MyApp::Web::Controller']);
+    $r-&gt;get('/')-&gt;to('root#index');
+}
+
+1;
+</code></pre>
+
+<h3>コントローラ</h3>
+
+<pre><code>package MyApp::Web::Controller::Root;
+use Mojo::Base 'Mojolicious::Controller';
+
+sub index {
+    my $self = shift;
+    my $message = "Hello, I'm from Yokohama!";
+    $self-&gt;stash-&gt;{message} = $message;
+    $self-&gt;render();
+}
+
+1;
+</code></pre>
+
+<h3>テンプレート</h3>
+
+<pre><code>% layout 'default';
+% title 'Welcome';
+
+&lt;h2&gt;&lt;%= $message %&gt;&lt;/h2&gt;
+</code></pre>
+
+<h3>さて</h3>
+
+<blockquote>
+  <p>なにをつくりましょうか！</p>
+</blockquote>
+
 <hr />
 
 <h2>ライブコーディングその2</h2>
+
+<hr />
 
 <h2>まとめ</h2>
 </div>
 <script type="text/javascript" src="js/pretty/prettify.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
