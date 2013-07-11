@@ -262,7 +262,7 @@
 
 ![Perl入学式](images/perl_entrance.jpg)
 
-### 巨人の方に乗る
+### 巨人の肩に乗る
 
 > Standing on the shoulders of giants
 
@@ -468,7 +468,8 @@ CSSセレクタを利用しHTMLを装飾する
     
 すると… 
     
-    tree ./
+    $ tree ./
+    
     ./
     ├── lib
     │   └── MyApp
