@@ -3,7 +3,8 @@
   <meta charset="utf-8">
   <title>1日でわかるWebサービス制作の全て ～企画から実装まで～</title>
   <link href="js/pretty/prettify.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
 </head>
 <body>
 <div id="content">
@@ -315,6 +316,10 @@ for my $tweet ( @{ $result-&gt;{statuses} } ) {
 <li>政治リスク</li>
 <li>法的リスク</li>
 </ul>
+
+<h3>ユースケースによる要求定義</h3>
+
+<p><img src="images/use_case.png" alt="ユースケース図" /></p>
 
 <h3>開発の準備をしよう</h3>
 
@@ -784,9 +789,33 @@ $entry-&gt;delete();
 
 <h2>今回紹介しなかったこと</h2>
 
+<h3>セキュリティ</h3>
+
+<ul>
+<li>Mojoliciousのセッション</li>
+<li>エスケープ関係諸々</li>
+<li>CSRF対策</li>
+<li>サーバのセキュアな運営</li>
+</ul>
+
+<h3>デプロイの実践</h3>
+
+<ul>
+<li>サーバ設定</li>
+<li>デプロイツール</li>
+<li>監視</li>
+</ul>
+
 <hr />
 
 <h2>まとめ</h2>
+
+<ul>
+<li>Webサービスをつくるための心得</li>
+<li>企画と設計</li>
+<li>Webのテクノロジー</li>
+<li>実際につくってみた</li>
+</ul>
 </div>
 <script type="text/javascript" src="js/pretty/prettify.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
