@@ -10,6 +10,7 @@ h1, h2, h3, h4{
 }
 h1 {
   font-size:240%;
+  margin:4em 0;
 }
 h2 {
   margin: 2em 0;

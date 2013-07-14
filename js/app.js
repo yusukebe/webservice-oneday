@@ -14,12 +14,12 @@ $(document).ready(function(){
   });
   
   $(window).keyup(function(e){
-    if(e.keyCode == 13 || e.keyCode == 39) {
+    if(e.keyCode == 13 || e.keyCode == 39 || e.keyCode == 74) {
       if(titles.length > index) {
         index++;
       }
       $('html').scrollTo($(titles[index]),200);
-    }else if(e.keyCode == 37){
+    }else if(e.keyCode == 37 || e.keyCode == 75){
       if(index != 0) {
         index--;
       }

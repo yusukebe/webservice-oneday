@@ -28,7 +28,8 @@ __DATA__
   <meta charset="utf-8">
   <title><?= $_[0] ?></title>
   <link href="js/pretty/prettify.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
 </head>
 <body>
 <div id="content">
