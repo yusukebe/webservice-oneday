@@ -67,6 +67,7 @@ pre {
   border:1px dashed #333;
   background-color: #eee;
   font-size:x-large;
+  overflow:auto;
 }
 
 pre.prettyprint { 
