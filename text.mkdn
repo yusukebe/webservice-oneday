@@ -1,5 +1,9 @@
 # 1日でわかるWebサービス制作の全て ～企画から実装まで～
 
+[MarkeZine Academy 2013/07/23](http://event.shoeisha.jp/mza/20130723)
+
+by [Yusuke Wada a.k.a yusukebe](http://yusukebe.com/)
+
 ## イントロダクション
 
 ### 自己紹介
@@ -409,7 +413,38 @@ CSSセレクタを利用しHTMLを装飾する
 
 > 今でしょ！
 
-## 開発環境の紹介  
+## 開発の実際
+
+### 3種の神器
+
+- ターミナル
+- エディタ
+- ブラウザ
+
+### レポジトリとしてのGit
+
+- コードのバージョン管理システム
+- clone/commit/push/pull/merge
+
+### GitHub
+
+![GitHub](images/github.png)
+
+### 流れ
+
+1. コードを書く
+2. テストを書く（最初に書くケースも）
+3. 実行する
+4. ブラウザで確認する
+5. commit/push
+
+### デプロイ
+
+- 手元のOSX = 開発環境
+- テスト/ステージング/本番
+- デプロイツールで自動化
+
+## 開発言語的な...
 
 ### use Perl
 

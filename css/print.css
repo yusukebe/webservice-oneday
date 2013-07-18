@@ -1,7 +1,7 @@
 #content {
   width:98%;
   margin:1% auto;
-  font-size:large;
+  font-size:middle;
 }
 
 img {
@@ -9,10 +9,10 @@ img {
 }
 
 pre {
-  font-size:large;
+  font-size:middle;
 }
 
 ul, ol, p, ul ul li, ol ul li {
   color:#333;
-  font-size:large;
+  font-size:middle;
 }

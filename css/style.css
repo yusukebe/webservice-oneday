@@ -10,7 +10,7 @@ h1, h2, h3, h4{
 }
 h1 {
   font-size:240%;
-  margin:4em 0;
+  margin:2em 0 1em;
 }
 h2 {
   margin: 2em 0;
@@ -59,6 +59,11 @@ blockquote {
   padding:20px;
   border:1px dotted #333;
   line-height:2em;
+}
+
+
+a:link, a:visited {
+  color:#1122CC;
 }
 
 pre {
