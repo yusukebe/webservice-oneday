@@ -264,6 +264,8 @@ by [Yusuke Wada a.k.a yusukebe](http://yusukebe.com/)
 
 ### エディタという道具
 
+> これはemacsです！
+
 ![emacs](images/emacs.png)
 
 ### 勉強会
@@ -460,7 +462,7 @@ CSSセレクタを利用しHTMLを装飾する
 
 > やり方はひとつじゃない
 
-### 実はこの資料もPerlでHTML化
+### 実はこの資料もPerlでHTML化!!!
 
 - Markdown でテキストを編集
 - 手元にてリアルタイムでプレビューするWebアプリ
