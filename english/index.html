@@ -1,0 +1,876 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Everything About Building a Web Service in One Day — From Planning to Implementation</title>
+    <link href="../js/pretty/prettify.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/print.css" media="print" />
+  </head>
+  <body>
+    <div id="content">
+
+      <h1>Everything About Building a Web Service in One Day — From Planning to Implementation</h1>
+
+      <blockquote>
+        <p><a href="../index.html">日本語で読む / Read in Japanese</a></p>
+      </blockquote>
+
+      <p><a href="http://event.shoeisha.jp/mza/20130723">MarkeZine Academy 2013/07/23</a></p>
+
+      <p>by <a href="http://yusukebe.com/">Yusuke Wada a.k.a yusukebe</a></p>
+
+      <h2>Introduction</h2>
+
+      <h3>About Me</h3>
+
+      <ul>
+        <li>Yusuke Wada / Yusuke Wada</li>
+        <li>Born 1981 / Based in Yokohama / Single</li>
+        <li>CEO, Wadit Inc.</li>
+        <li>Director & CTO, Omoroki Inc.</li>
+        <li>Web Application Developer</li>
+        <li>Occasional writer</li>
+      </ul>
+
+      <h3>Wadit</h3>
+
+      <p><img src="../images/wadit.jpg" alt="Wadit" /></p>
+
+      <h3>Omoroki</h3>
+
+      <p><img src="../images/omoroki.jpg" alt="Omoroki" /></p>
+
+      <h3>Main Work #1</h3>
+
+      <p><img src="../images/bokete.png" alt="Bokete" /></p>
+
+      <h3>Main Work #2</h3>
+
+      <p><img src="../images/book.jpg" alt="How to Build Web Services" /></p>
+
+      <h3>Other Things I've Built</h3>
+
+      <ul>
+        <li><a href="http://kimi.la/">Kimi no Radio (Your Radio)</a></li>
+        <li>anpi Report</li>
+        <li>CDTube</li>
+        <li>Various adult websites</li>
+      </ul>
+
+      <h3><a href="http://kimi.la/">Kimi no Radio (Your Radio)</a></h3>
+
+      <p><img src="../images/kimi.png" alt="Kimi no Radio" /></p>
+
+      <h3>anpi Report</h3>
+
+      <p><img src="../images/anpi.png" alt="anpi Report" /></p>
+
+      <h3>CDTube</h3>
+
+      <p><img src="../images/cdtube.jpg" alt="CDTube" /></p>
+
+      <h2>Bokete</h2>
+
+      <h3>Current Status</h3>
+
+      <ul>
+        <li>Over 100 million monthly page views across all devices</li>
+        <li>1.7 million total downloads across smartphone apps</li>
+        <li>Partnerships with hao123 and Yahoo! JAPAN</li>
+        <li>Content published as books — twice</li>
+        <li>Collaborations with various companies</li>
+      </ul>
+
+      <h3>Our Journey</h3>
+
+      <p><img src="../images/bokete_history.png" alt="Bokete's History" /></p>
+
+      <hr />
+
+      <h2>The Main Topic: "What It Takes to Build a Web Service"</h2>
+
+      <h3>Defining "Web Service"</h3>
+
+      <p>A website that provides some kind of <em>service</em> to its visitors</p>
+
+      <ul>
+        <li>The term "web service" can also refer to sending and receiving messages via SOAP/XML over HTTP</li>
+        <li>A dynamic website</li>
+        <li>Pages that change depending on the context of each request</li>
+        <li>Companion smartphone apps are part of this as well</li>
+      </ul>
+
+      <h3>Case Study: Cookpad</h3>
+
+      <p><img src="../images/cookpad.png" alt="Cookpad" /></p>
+
+      <h3>Case Study: nanapi</h3>
+
+      <p><img src="../images/nanapi.png" alt="nanapi" /></p>
+
+      <h3>Providing a Service = Having Users</h3>
+
+      <ul>
+        <li>The "C" in "B to C"</li>
+        <li>Getting as many users as possible to use your service</li>
+        <li>Enriching the user experience</li>
+        <li>These two things are your key metrics</li>
+      </ul>
+
+      <h3>You Can Start Small — Even Solo</h3>
+
+      <ul>
+        <li>Omoroki has just 4 employees</li>
+        <li>We develop and operate in partnership with others</li>
+        <li>Low initial costs</li>
+        <li>Even an individual can build and publicize a web service</li>
+        <li>Interests are so diverse today that even niche products can work</li>
+      </ul>
+
+      <h3>What You Get Out of It</h3>
+
+      <ol>
+        <li>You learn a ton</li>
+        <li>It becomes a second business card</li>
+        <li>User reactions are a blast</li>
+        <li>And maybe — just maybe — you make some money</li>
+      </ol>
+
+      <h3>The Best Moment</h3>
+
+      <blockquote>
+        <p>"You're the yusukebe who made that service, right?"</p>
+      </blockquote>
+
+      <h3>Change the World from a Six-Tatami Room</h3>
+
+      <p><img src="../images/desk.jpg" alt="Desk" /></p>
+
+      <h3>Words to Live By</h3>
+
+      <blockquote>
+        <p>Shut the fuck up and write some code.</p>
+      </blockquote>
+
+      <h3>For Example...</h3>
+
+      <ul>
+        <li>Analyze tweets containing "good morning" from Twitter</li>
+        <li>A seed of an idea</li>
+        <li>You can validate it by running a simple program</li>
+      </ul>
+
+      <h3>twitter_search.pl</h3>
+
+      <pre><code>use Net::Twitter::Lite::WithAPIv1_1;
+use Config::Pit;
+use Encode;
+use utf8;
+
+binmode STDOUT, ':utf8';
+
+my $config = pit_get('twitter-api');
+my $nt   = Net::Twitter::Lite::WithAPIv1_1-&gt;new(
+    consumer_key        =&gt; $config-&gt;{consumer_key},
+    consumer_secret  =&gt; $config-&gt;{consumer_secret},
+    access_token        =&gt; $config-&gt;{token},
+    access_token_secret =&gt; $config-&gt;{token_secret}
+);
+my $result = $nt-&gt;search(
+    {
+        q               =&gt; 'おはよう',
+        include_entities =&gt; 1,
+        result_type   =&gt; 'recent',
+        count           =&gt; 100
+    }
+);
+
+for my $tweet ( @{ $result-&gt;{statuses} } ) {
+    print "$tweet-&gt;{text}\n";
+    print "----------------------------------------\n";
+}
+      </code></pre>
+
+      <h3>The Important Thing Is to Get Your Hands Moving</h3>
+
+      <blockquote>
+        <p>Out of 1,000 people, 100 come up with an idea, 10 actually build it, and 1 succeeds</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>Planning & Development Prep</h2>
+
+      <h3>Build Your Own Process for Building Things</h3>
+
+      <ul>
+        <li>Develop your own methodology for creating things</li>
+        <li>Recommended reading:
+          <ul>
+            <li><a href="http://www.amazon.co.jp/dp/415208426X/">IDEO — "The Art of Innovation"</a></li>
+            <li><a href="http://www.amazon.co.jp/dp/4152087994/">The Design Thinking Toolbox</a></li>
+            <li><a href="http://www.amazon.co.jp/dp/4396612117/">You're Doing Your Job Wrong</a></li>
+            <li><a href="http://www.amazon.co.jp/dp/4484881047/">A Technique for Producing Ideas</a></li>
+          </ul></li>
+      </ul>
+
+      <h3>The Design Thinking Toolbox</h3>
+
+      <p><img src="../images/okudehon.jpg" alt="The Design Thinking Toolbox" /></p>
+
+      <h3>Keep the Creative Cycle Spinning</h3>
+
+      <p><img src="../images/cycle.jpg" alt="The Creative Cycle" /></p>
+
+      <ol>
+        <li>Philosophy
+          <ul>
+            <li>An unshakeable personal conviction about a particular interest</li>
+          </ul></li>
+          <li>Idea
+            <ul>
+              <li>Specific, concrete ideas that serve your philosophy</li>
+            </ul></li>
+            <li>Theme
+              <ul>
+                <li>The domain you're competing in</li>
+              </ul></li>
+              <li>Concept
+                <ul>
+                  <li>A framework that bundles your ideas into a single phrase describing what you're building</li>
+                </ul></li>
+                <li>Name
+                  <ul>
+                    <li>You can't start without one. Go flashy, or go with something that speaks for itself?</li>
+                  </ul></li>
+                  <li>Design
+                    <ul>
+                      <li>Not just aesthetics — the process of making deliberate compromises on the details</li>
+                    </ul></li>
+                    <li>Internal Architecture
+                      <ul>
+                        <li>Designing the system internals in preparation for implementation</li>
+                      </ul></li>
+      </ol>
+
+      <h3>For Example...</h3>
+
+      <p>Take <a href="http://cookpad.com/">Cookpad</a> as an example...</p>
+
+      <h3>The Difference Between Ideas and Concepts</h3>
+
+      <ul>
+        <li>You'll come up with lots of ideas</li>
+        <li>A concept is the framework that ties them all together</li>
+      </ul>
+
+      <blockquote>
+        <p>Example: Bokete is a web service for "captioning photos with jokes"</p>
+      </blockquote>
+
+      <h3>Ideas Are Combinations</h3>
+
+      <blockquote>
+        <p>An idea is nothing more nor less than a new combination of existing elements</p>
+
+        <p>— from "A Technique for Producing Ideas"</p>
+      </blockquote>
+
+      <h3>Ideas Come to You in the Shower</h3>
+
+      <ul>
+        <li>Ideas don't come to you right away</li>
+        <li>The key is how hard you push yourself right up to the point of incubation</li>
+        <li>After that, they mysteriously come to you when you're relaxed</li>
+      </ul>
+
+      <h3>Seeds vs. Needs</h3>
+
+      <ul>
+        <li>"Seeds" — what you're capable of building</li>
+        <li>"Needs" — what people actually want</li>
+        <li>You need to understand both</li>
+        <li>But you shouldn't lean too heavily toward either one</li>
+      </ul>
+
+      <h3>The Ultimate Brainstorm</h3>
+
+      <p><img src="../images/ideo.jpg" alt="IDEO" /></p>
+
+      <p>From <a href="http://www.designsojourn.com/7-ways-to-unleashing-your-creativity/">7 Ways to Unleashing your Creativity</a></p>
+
+      <h3>Brainstorming Has Rules</h3>
+
+      <ul>
+        <li>No shutting down ideas</li>
+        <li>Build on each other's ideas instead</li>
+        <li>Set a time limit</li>
+        <li>Count the ideas</li>
+        <li>Say wild things</li>
+        <li>Have someone to synthesize</li>
+      </ul>
+
+      <h3>Risk, Risk, Risk</h3>
+
+      <blockquote>
+        <p>Risks are lurking everywhere</p>
+      </blockquote>
+
+      <p><img src="../images/typhoon.jpg" alt="Typhoon" /></p>
+
+      <ul>
+        <li>Skill risk</li>
+        <li>Technical risk</li>
+        <li>Political risk</li>
+        <li>Legal risk</li>
+      </ul>
+
+      <h3>Requirements Definition via Use Cases</h3>
+
+      <p><img src="../images/use_case.png" alt="Use Case Diagram" /></p>
+
+      <h3>Let's Get Ready to Develop</h3>
+
+      <p>Lower the barriers to development so your plan doesn't die on the drawing board</p>
+
+      <blockquote>
+        <p>Nobody wants to be all talk and no action</p>
+      </blockquote>
+
+      <h3>The Editor — Your Tool of Choice</h3>
+
+      <blockquote>
+        <p>This is Emacs!</p>
+      </blockquote>
+
+      <p><img src="../images/emacs.png" alt="Emacs" /></p>
+
+      <h3>Study Groups</h3>
+
+      <p><img src="../images/perl_entrance.jpg" alt="Perl Entrance" /></p>
+
+      <h3>Standing on the Shoulders of Giants</h3>
+
+      <blockquote>
+        <p>Standing on the shoulders of giants</p>
+      </blockquote>
+
+      <p>The CPAN library ecosystem</p>
+
+      <ul>
+        <li><a href="http://yusukebe.com/archives/20090912/120113.html">Where are Casual Perlers ?</a></li>
+        <li><a href="http://bulknews.typepad.com/blog/2009/09/on-module-writers-and-users.html">On module writers and users</a></li>
+      </ul>
+
+      <hr />
+
+      <h2>Web Technology Overview</h2>
+
+      <h3>Learn the Fundamentals of the Web While Building</h3>
+
+      <p>Recommended book:</p>
+
+      <p><img src="../images/http_and_rest_hon.jpg" alt="The Technologies Behind the Web" /></p>
+
+      <h3>What Happens Behind the Scenes When You View a Webpage</h3>
+
+      <p><img src="../images/client_server.png" alt="Client-Server" /></p>
+
+      <p>This exchange itself is defined as a <em>protocol</em> — a set of rules</p>
+
+      <h3>HTTP, URI, HTML</h3>
+
+      <p><img src="../images/web_diagram.png" alt="HTTP, URI, HTML" /></p>
+
+      <blockquote>
+        <p>These are just conventions — think of them as "that's just how it works"</p>
+      </blockquote>
+
+      <h3>URI / URL</h3>
+
+      <blockquote>
+        <p>http://example.com/about.html</p>
+      </blockquote>
+
+      <ul>
+        <li>Uses "HTTP" as the protocol</li>
+        <li>The hostname is example.com</li>
+        <li>The path is /about.html</li>
+        <li>The extension is .html, so it's usually HTML</li>
+      </ul>
+
+      <h3>HTTP Methods</h3>
+
+      <p>Requests from client to server. Four methods are primarily used for manipulating resources:</p>
+
+      <ul>
+        <li>GET</li>
+        <li>POST</li>
+        <li>PUT</li>
+        <li>DELETE</li>
+      </ul>
+
+      <h3>GET via telnet</h3>
+
+      <pre><code>$ telnet yusukebe.com 80
+
+GET / HTTP/1.1
+Host: yusukebe.com
+      </code></pre>
+
+      <h3>Elements That Make Up a Webpage</h3>
+
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Images, Flash, and other binary files</li>
+      </ul>
+
+      <h3>HTML - HyperText Markup Language</h3>
+
+      <p>Write semi-structured text using markup</p>
+
+      <pre><code>&lt;h2 class="title"&gt;Title&lt;/h2&gt;
+      </code></pre>
+
+      <h3>CSS - Cascading Style Sheets</h3>
+
+      <p>Style HTML using CSS selectors</p>
+
+      <pre><code>h2.title { color:#333; }
+      </code></pre>
+
+      <h3>JavaScript</h3>
+
+      <p>Manipulate the page on the browser side to add interactivity</p>
+
+      <pre><code>$('h2.title').fadeOut();
+      </code></pre>
+
+      <h3>Dynamic Sites vs. Static Sites</h3>
+
+      <p><img src="../images/static_or_dynamic.png" alt="Static vs. Dynamic Sites" /></p>
+
+      <h3>Web Programming Languages</h3>
+
+      <ul>
+        <li>PHP</li>
+        <li>Perl</li>
+        <li>Ruby</li>
+        <li>Python</li>
+        <li>Java</li>
+      </ul>
+
+      <p>These are the mainstream choices, though it's not impossible with C either</p>
+
+      <h3>Web Application Framework</h3>
+
+      <blockquote>
+        <p>For example, Ruby on Rails</p>
+      </blockquote>
+
+      <h3>Before Frameworks</h3>
+
+      <p><img src="../images/kent.png" alt="CGI" /></p>
+
+      <h3>The MVC Pattern</h3>
+
+      <ul>
+        <li>Model</li>
+        <li>View</li>
+        <li>Controller</li>
+      </ul>
+
+      <blockquote>
+        <p>It's a good idea to keep your concerns separated</p>
+      </blockquote>
+
+      <h3>Web Servers, Middleware, and More</h3>
+
+      <ul>
+        <li>Apache</li>
+        <li>nginx</li>
+        <li>MySQL</li>
+        <li>memcached</li>
+        <li>Redis</li>
+        <li>MongoDB</li>
+      </ul>
+
+      <h3>AWS as a Cloud Platform</h3>
+
+      <ul>
+        <li>Amazon Web Services</li>
+        <li>Bokete currently uses about 30 servers</li>
+        <li>Can scale out in 10 minutes</li>
+        <li>Access to managed middleware:
+          <ul>
+            <li>S3 / CloudFront</li>
+            <li>RDS</li>
+            <li>ElastiCache</li>
+            <li>SES</li>
+          </ul></li>
+      </ul>
+
+      <hr />
+
+      <h2>Live Coding Session #1</h2>
+
+      <h3>Let's Build Something!</h3>
+
+      <blockquote>
+        <p>Example: A bulletin board with Twitter login</p>
+      </blockquote>
+
+      <h3>When Should We Build It?</h3>
+
+      <blockquote>
+        <p>Right now!</p>
+      </blockquote>
+
+      <h2>Development in Practice</h2>
+
+      <h3>The Three Sacred Tools</h3>
+
+      <ul>
+        <li>Terminal</li>
+        <li>Editor</li>
+        <li>Browser</li>
+      </ul>
+
+      <h3>Git as Version Control</h3>
+
+      <ul>
+        <li>A version control system for your code</li>
+        <li>clone/commit/push/pull/merge</li>
+      </ul>
+
+      <h3>GitHub</h3>
+
+      <p><img src="../images/github.png" alt="GitHub" /></p>
+
+      <h3>The Workflow</h3>
+
+      <ol>
+        <li>Write code</li>
+        <li>Write tests (sometimes tests first)</li>
+        <li>Run it</li>
+        <li>Check it in the browser</li>
+        <li>commit/push</li>
+      </ol>
+
+      <h3>Deployment</h3>
+
+      <ul>
+        <li>Your local OS X machine = development environment</li>
+        <li>Test / Staging / Production</li>
+        <li>Automate deployments with deployment tools</li>
+      </ul>
+
+      <h2>On the Programming Language Side...</h2>
+
+      <h3>use Perl</h3>
+
+      <ul>
+        <li>25 years old / Created by Larry Wall</li>
+        <li>A language strong in text processing</li>
+        <li>Often overshadowed by Ruby/Python/PHP, but...</li>
+        <li>The web is basically text = Perl is great for the web too</li>
+        <li>Latest stable Perl 5 version is 5.18.0</li>
+      </ul>
+
+      <h3>TMTOWTDI</h3>
+
+      <p><img src="../images/larry.jpg" alt="Larry Wall" /></p>
+
+      <blockquote>
+        <p>There's More Than One Way To Do It</p>
+      </blockquote>
+
+      <h3>These Slides Were Actually Converted to HTML with Perl!!!</h3>
+
+      <ul>
+        <li>Content written in Markdown</li>
+        <li>A local web app for real-time preview</li>
+        <li>A conversion script to generate HTML</li>
+        <li>Published via GitHub Pages</li>
+        <li><a href="../lib/WebServiceOneDay.pm">WebServiceOneDay.pm</a></li>
+        <li><a href="../examples/convert.pl">convert.pl</a></li>
+      </ul>
+
+      <h3>CPAN Libraries</h3>
+
+      <p><img src="../images/cpan.png" alt="search.cpan.org" /></p>
+
+      <h3>WebServiceOneDay.pm</h3>
+
+      <pre><code>package WebServiceOneDay;
+use strict;
+use warnings;
+use Text::Markdown qw/markdown/;
+use Path::Class qw/file/;
+use Encode qw/decode_utf8/;
+use Data::Section::Simple qw/get_data_section/;
+use Text::MicroTemplate qw/render_mt/;
+
+…;
+      </code></pre>
+
+      <h3>Perl Mongers !!</h3>
+
+      <p><img src="../images/yapcasia.jpg" alt="YAPC::Asia 2011" /></p>
+
+      <h2>Web Application Framework</h2>
+
+      <h3>Mojolicious</h3>
+
+      <ul>
+        <li>Supports VC (View and Controller) out of MVC</li>
+        <li>Depends only on Perl core modules = portable</li>
+        <li>Not "full-stack" in the traditional sense</li>
+        <li>Full-stack in the sense that it implements everything minimally on its own</li>
+        <li>Combine with other CPAN modules as needed</li>
+        <li>Latest version is 4.18</li>
+      </ul>
+
+      <h3>Skeleton</h3>
+
+      <pre><code>$ mojo generate app MyApp::Web
+      </code></pre>
+
+      <p>And you get... </p>
+
+      <pre><code>$ tree ./
+
+./
+├── lib
+│   └── MyApp
+│    ├── Web
+│    │   └── Example.pm
+│    └── Web.pm
+├── log
+├── public
+│   └── index.html
+├── script
+│   └── my_app_web
+├── t
+│   └── basic.t
+└── templates
+    ├── example
+    │   └── welcome.html.ep
+    └── layouts
+        └── default.html.ep
+      </code></pre>
+
+      <h3>Routing</h3>
+
+      <pre><code>package MyApp::Web;
+use Mojo::Base 'Mojolicious';
+
+sub startup {
+    my $self = shift;
+    my $r = $self-&gt;routes;
+    $r-&gt;namespaces(['MyApp::Web::Controller']);
+    $r-&gt;get('/')-&gt;to('root#index');
+}
+
+1;
+      </code></pre>
+
+      <h3>Controller</h3>
+
+      <pre><code>package MyApp::Web::Controller::Root;
+use Mojo::Base 'Mojolicious::Controller';
+
+sub index {
+    my $self = shift;
+    my $message = "Hello, I'm from Yokohama!";
+    $self-&gt;stash-&gt;{message} = $message;
+    $self-&gt;render();
+}
+
+1;
+      </code></pre>
+
+      <h3>Template</h3>
+
+      <pre><code>% layout 'default';
+% title 'Welcome';
+
+&lt;h2&gt;&lt;%= $message %&gt;&lt;/h2&gt;
+      </code></pre>
+
+      <h3>So Then</h3>
+
+      <blockquote>
+        <p>What shall we build!</p>
+      </blockquote>
+
+      <hr />
+
+      <h2>Live Coding Session #2</h2>
+
+      <h3>Working with Databases</h3>
+
+      <ul>
+        <li>Using MySQL</li>
+        <li>A type of relational database</li>
+        <li>Basically a "table"</li>
+        <li>Querying with SQL</li>
+        <li>Extracting and joining data</li>
+      </ul>
+
+      <h3>Table Structure</h3>
+
+      <pre><code>mysql&gt; select * from entry;
++----+---------------+-----------+---------+---------------------+
+| id | title         | body   | user_id | created_on          |
++----+---------------+-----------+---------+---------------------+
+|  1 | This is title | Body Text |     1 | 2013-07-23 14:00:00 |
++----+---------------+-----------+---------+---------------------+
+1 row in set (0.00 sec)
+      </code></pre>
+
+      <h3>SQL Statements</h3>
+
+      <pre><code>CREATE TABLE entry (
+    id INT UNSIGNED AUTO_INCREMENT,
+    title VARCHAR(255),
+    body TEXT NOT NULL,
+    user_id BIGINT UNSIGNED NOT NULL,
+    created_on DATETIME NOT NULL,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET 'utf8' engine=InnoDB;
+
+INSERT INTO entry
+(title, body, user_id, created_on)
+VALUES
+('This is title', 'Body Text', 1, '2013-07-23 14:00:00');
+      </code></pre>
+
+      <h3>O/R Mapper</h3>
+
+      <ul>
+        <li>Object-relational mapping</li>
+        <li>Work with Row objects</li>
+        <li>Handle relations too?</li>
+        <li>Issue SQL in a more programmatic way</li>
+      </ul>
+
+      <h3>Pseudocode</h3>
+
+      <pre><code>$db-&gt;insert( 'entry',
+    { title =&gt; 'This is title', body =&gt; 'Body text' } );
+my $entry = $db-&gt;single( 'entry', { id =&gt; 1 } );
+say $entry-&gt;title; # This is title
+$entry-&gt;update({ title =&gt; 'Another title' });
+say $entry-&gt;title; # Another title
+$entry-&gt;delete();
+      </code></pre>
+
+      <h3>Build Models and Call Them from Controllers</h3>
+
+      <ul>
+        <li>Keep controllers as thin as possible</li>
+        <li>Models should be independently runnable and testable</li>
+        <li>Recommended: use the O/R Mapper within your models</li>
+      </ul>
+
+      <h3>In the Controller</h3>
+
+      <pre><code>sub index {
+    my $self = shift;
+    my $entries = $self-&gt;model('Entry')-&gt;get_recent_entries({}, {
+        order_by =&gt; 'id DESC', page =&gt; 1
+    });
+    $self-&gt;stash-&gt;{entries} = $entries;
+    $self-&gt;render('index');
+}
+      </code></pre>
+
+      <h3>CLI</h3>
+
+      <ul>
+        <li>Command-line interface</li>
+        <li>Run as cron jobs or daemons</li>
+        <li>a.k.a. batch processing</li>
+        <li>Job queues</li>
+        <li>vs. Web apps</li>
+      </ul>
+
+      <h3>Validation</h3>
+
+      <ul>
+        <li>Verifying form input values</li>
+        <li>For example: does it look like a valid postal code?</li>
+        <li>Show appropriate error messages to the user</li>
+      </ul>
+
+      <h3>Implementing the Frontend</h3>
+
+      <ul>
+        <li>Use minimal libraries to make life easier</li>
+        <li>jQuery</li>
+        <li>CSS Framework</li>
+      </ul>
+
+      <h3>Testing</h3>
+
+      <ul>
+        <li>Ensuring your program behaves as expected</li>
+        <li>Test code automatically determines "green" or "red"</li>
+      </ul>
+
+      <p>TAP</p>
+
+      <pre><code>ok $model-&gt;get_entry({ id =&gt; 1 });
+      </code></pre>
+
+      <h3>Provisioning Example</h3>
+
+      <ul>
+        <li>VPS or AWS — pick one</li>
+        <li>Frontend proxy — nginx</li>
+        <li>Application server — Starman / Starlet</li>
+        <li>Database server — MySQL</li>
+        <li>Cache server — memcached</li>
+      </ul>
+
+      <hr />
+
+      <h2>Things Not Covered Today</h2>
+
+      <h3>Security</h3>
+
+      <ul>
+        <li>Mojolicious sessions</li>
+        <li>Escaping and related concerns</li>
+        <li>CSRF protection</li>
+        <li>Secure server administration</li>
+      </ul>
+
+      <h3>Deployment in Practice</h3>
+
+      <ul>
+        <li>Server configuration</li>
+        <li>Deployment tools</li>
+        <li>Monitoring</li>
+      </ul>
+
+      <hr />
+
+      <h2>Summary</h2>
+
+      <ul>
+        <li>The mindset for building web services</li>
+        <li>Planning and design</li>
+        <li>Web technologies</li>
+        <li>We actually built something</li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../js/pretty/prettify.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.scrollTo-min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+  </body>
+</html>
